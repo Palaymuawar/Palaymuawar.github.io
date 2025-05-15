@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>နန်းပလေမူးအွာ</title>
+    <style>
+        :root {
+            --primary-green: #0ee639;
+            --secondary-green: #11e365;
+            --accent-red: #099bd9;
+            --dark-blue: #3261e3;white-space;: #333: #eaf2f5;
+        }
+        
+        body {
+            font-family: 'Padauk', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--white);
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-green), var(--dark-blue));
+            color: rgb(233, 245, 233);
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        header * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-red);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin: 1rem auto;
+            display: block;
+        }
+        
+        section {
+            padding: 2rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h2 {
+            color: var(--primary-green);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent-red);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            color: var(--dark-blue);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-right: 10px;
+            color: var(--accent-red);
+        }
+        
+        .hobbies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        
+        .hobby {
+            background-color: var(--secondary-green);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            height: 200px;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        footer {
+            background-color: var(--black);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: white;
+            background-color: var(--primary-green);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-red);
+        }
+        
+        .quote {
+            font-style: italic;
+            color: var(--dark-blue);
+            border-left: 3px solid var(--accent-red);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .personality-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+        
+        .trait {
+            background-color: var(--accent-red);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Dark mode toggle */
+        .dark-mode {
+            background-color: #222;
+            color: #eee;
+        }
+        
+        .dark-mode .card {
+            background-color: #333;
+            color: #eee;
+        }
+        
+        .dark-mode h2 {
+            color: var(--secondary-green);
+        }
+        
+        .dark-mode .card h3 {
+            color: #dfe5eb;
+        }
+        
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-green);
+            color: rgb(110, 12, 222);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(150, 29, 29, 0.2);
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--accent-red);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="နန်းပလေမူးအွာ" class="profile-img">
+            <h1>နန်းပလေမူးအွာ</h1>
+            <p class="tagline">Grade 11 ကျောင်းသူ | ဆပ်ပြာလုပ်ငန်းရှင် | သင်္ချာဝါသနာပါ</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="about">
+            <h2>ကျွန်မအကြောင်း</h2>
+            <div class="about-grid">
+                <div class="card">
+                    <h3><i class="fas fa-user"></i> အခြေခံအချက်အလက်</h3>
+                    <p><strong>အသက်:</strong> ၁၇ နှစ်</p>
+                    <p><strong>ကျောင်း:</strong> တောင်ကလေးဘုန်းတော်ကြီးသင်ပညာရေးကျောင်း</p>
+                    <p><strong>ကျေးရွာ:</strong> ကရင်ပြည်နယ်၊ ကော့ကရိတ်မြို့နယ်၊ လောင်းကိုင်ကျေးရွာ</p>
+                    <p><strong>တန်း:</strong> Grade 11</p>
+                    
+                    <div class="quote">
+                        "မြို့ထက် ရွာမှာနေရတာကို ပိုကြိုက်ပါတယ်။ 
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-heart"></i> ကိုယ်ရည်ကိုယ်သွေး</h3>
+                    <div class="personality-traits">
+                        <span class="trait">အငြိမ်သဘော</span>
+                        <span class="trait">အတွေးအခေါ်ကောင်း</span>
+                        <span class="trait">ဖန်တီးနိုင်စွမ်းရှိ</span>
+                        <span class="trait">လွတ်လပ်စွာနေတတ်</span>
+                    </div>
+                    <p> သင်္ချာဘာသာရပ်ကို အကြိုက်ဆုံးဖြစ်တာက ပြဿနာတွေကို ယုတ္တိရှိရှိ ဖြေရှင်းရတာကို နှစ်သက်လို့ပါ။သင်ချာသည်လက်တွေ့ဘဝနှင့်နည်းပညာများတွင်အခြေခံကျသောဘာသာရပ်ဖြစ်သည်။</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="hobbies">
+            <h2>ဝါသနာနှင့် အကြိုက်များ</h2>
+            <div class="about-grid">
+                <div class="card">
+                    <h3><i class="fas fa-paint-brush"></i> ဖန်တီးမှုဆိုင်ရာ အလုပ်များ</h3>
+                    <div class="hobbies">
+                        <span class="hobby">စက်ချုပ်</span>
+                        <span class="hobby">ချည်ထိုး</span>
+                        <span class="hobby">လက်မှုပစ္စည်း</span>
+                    </div>
+                    <p>လက်နဲ့ အရာဝတ္ထုတွေ ဖန်တီးရတာကို ငြိမ်းချမ်းမှုနဲ့ ကျေနပ်မှုရှိပါတယ်။ အဝတ်အစားချုပ်တာ၊ အလှဆင်ပစ္စည်းတွေ ချည်ထိုးတာမျိုးကို ရိုးရှင်းတဲ့ပစ္စည်းတွေကနေ အလှပအရာတွေ ဖန်တီးရတာ ကြိုက်နှစ်သက်ပါတယ်။</p>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-music"></i> ဂီတနှင့် စီးပွားရေး</h3>
+                    <div class="hobbies">
+                        <span class="hobby">သီချင်းနားထောင်</span>
+                        <span class="hobby">စီးပွားရေး</span>
+                        <span class="hobby">အရည်အချင်းသစ်များ လေ့လာ</span>
+                    </div>
+                    <p>ဂီတက ကျွန်မရဲ့ အမြဲတမ်းအဖော်ပါ။ အာရုံစိုက်ဖို့နဲ့ အနားယူဖို့ ကူညီပေးပါတယ်။ စီးပွားရေးနဲ့ စီးပွားရေးစီမံခန့်ခွဲမှုအကြောင်း လေ့လာဖို့ အခွင့်အလမ်းတွေကိုလည်း အမြဲရှာဖွေနေပါတယ်။</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>ကျွန်မရဲ့ ပရောဂျက်များ</h2>
+            <div class="card">
+                <h3><i class="fas fa-flask"></i> ဆပ်ပြာလုပ်ငန်း</h3>
+                <p>လက်ရှိလုပ်ဆောင်နေတဲ့ ပရောဂျက်တစ်ခုကတော့ အရည်ဆပ်ပြာလုပ်ငန်းပါ။ ထိရောက်ပြီး သဘာဝပတ်ဝန်းကျင်နဲ့ သဟဇာတဖြစ်တဲ့ သန့်ရှင်းရေးပစ္စည်းတွေ လုပ်ဖို့ မတူညီတဲ့ပစ္စည်းတွေနဲ့ ဖော်မြူလာတွေကို စမ်းသပ်ရတာ ကြိုက်နှစ်သက်ပါတယ်။</p>
+                <p>အထူးသဖြင့် ဖန်တီးမှုနဲ့ လက်တွေ့အသုံးချမှုကို ပေါင်းစပ်ထားတဲ့ ပရောဂျက်အသစ်တွေကို အမြဲစိတ်ဝင်စားပါတယ်။ <h3>ဆပ်ပြာရည် ပြုလုပ်နည်း အဆင့်ဆင့်</h3>
+        <ol>
+            <li>ဆီ (အုန်းဆီ၊ မြေပဲဆီ) ကို အပူပေးပါ</li>
+            <li>NaOH (ဆိုဒီယမ် ဟိုက်ဒရောဆိုဒ်) ကို ရေနှင့် ဖျော်ပါ</li>
+            <li>ဆီနှင့် NaOH အရည်ကို ရောမွှေပါ</li>
+            <li>၂၄ နာရီခန့် ထားပါ</li>
+</p>
+                
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="                                        " alt="ဆပ်ပြာလုပ်ငန်း">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="စက်ချုပ်">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="စီးပွားရေး">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="သင်္ချာ">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="inspiration">
+            <h2>စေ့ဆော်မှုများ</h2>
+            <div class="card">
+                <h3><i class="fas fa-quote-left"></i> အကြိုက်ဆုံးအရောင်များနှင့် ပတ်ဝန်းကျင်</h3>
+                <p>ကျွန်မအကြိုက်ဆုံးအရောင်တွေက အစိမ်းနဲ့ အနီရောင်တွေပါ။ သဘာဝရဲ့အသက်ဓာတ်နဲ့ အတွင်းထဲက စိတ်အားထက်သန်မှုကို ကိုယ်စားပြုပါတယ်။ အပြာရင့်ရောင်နဲ့ အမည်းရောင်တွေရဲ့ နက်နဲမှုနဲ့ အဆင့်အတန်းကိုလည်း နှစ်သက်ပါတယ်။</p>
+                <p>ကျေးရွာမှာနေထိုင်ရတာက သဘာဝနဲ့ဆက်သွယ်ပြီး တွေးခေါ်စရာအချိန်ရစေပါတယ်။ ငြိမ်းချမ်းတဲ့ပတ်ဝန်းကျင်က ကျွန်မရဲ့ဖန်တီးနိုင်စွမ်းကို အားပေးပြီး စာသင်ချိန်နဲ့ ပရောဂျက်တွေမှာ အာရုံစိုက်နိုင်အောင် ကူညီပေးပါတယ်။</p>
+                
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="ကျေးရွာဘဝ">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="အစိမ်းရောင်">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1533107862482-0e6974b06ec4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="အနီရောင်">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="သင်္ချာပုံသေနည်းများ">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <h3>ဆက်သွယ်ရန်</h3>
+            <p>အကြိုက်တူသူများ သို့မဟုတ် ပရောဂျက်တွင် ပူးပေါင်းလုပ်ဆောင်လိုပါက ဆက်သွယ်နိုင်ပါသည်!</p>
+            
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p>&copy; ၂၀၂၃ နန်းပလေမူးအွာ။ မူပိုင်ခွင့်အားလုံးရှိသည်။</p>
+        </div>
+    </footer>
+    
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.card');
+        
+        const animateOnScroll = () => {
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (cardPosition < screenPosition) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
